@@ -13,3 +13,8 @@ Folder structure
 app -> folder contains application codes.
 driver -> contains diffrent driver related codes.
 build -> all generated outpul files resides here.(for now please create this folder manually)
+
+--Build Process --
+1. open cmd inside project folder.
+2. type make all to build project
+3. type make clean to clean generated binaries.

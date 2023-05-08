@@ -5,6 +5,9 @@ Bare metal drivers for stm32f407 microcontroller.
 Board - STM32f407 Black Board
 Debugger - ST-Link/V2
 
+--Software Used --
+Text Editor - Notepad++
+Binary Loader - STM32CubeProgrammer
 
 Folder structure
 app -> folder contains application codes.

@@ -8,6 +8,8 @@ Bare metal drivers for stm32f407 microcontroller.
 --Software Used --
 1. Text Editor - Notepad++
 2. Binary Loader - STM32CubeProgrammer
+3. Make for windows - https://gnuwin32.sourceforge.net/downlinks/make.php
+4. Arm Gcc cross compiler - https://developer.arm.com/-/media/Files/downloads/gnu/13.3.rel1/binrel/arm-gnu-toolchain-13.3.rel1-mingw-w64-i686-arm-none-eabi.exe
 
 --Folder structure --
 1. app -> folder contains application codes.
@@ -16,5 +18,5 @@ Bare metal drivers for stm32f407 microcontroller.
 
 --Build Process --
 1. open cmd inside project folder.
-2. type make all to build project
+2. type make all to build project.
 3. type make clean to clean generated binaries.

@@ -1,0 +1,125 @@
+
+There are no discarded input sections
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+SRAM             0x20000000         0x00020000         xrw
+FLASH            0x08000000         0x00080000         xr
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD build/main.o
+LOAD build/bb_delay.o
+LOAD build/bb_sysclock.o
+LOAD build/bb_port.o
+LOAD build/stm32_startup.o
+                0x20020000                        _estack = (ORIGIN (SRAM) + LENGTH (SRAM))
+
+.isr_vector     0x08000000       0x1c
+                0x08000000                        . = ALIGN (0x4)
+ *(.isr_vector)
+ .isr_vector    0x08000000       0x1c build/stm32_startup.o
+                0x08000000                g_pfnVectors
+                0x0800001c                        . = ALIGN (0x4)
+
+.text           0x0800001c      0x158
+                0x0800001c                        . = ALIGN (0x4)
+ *(*.text)
+ .text          0x0800001c       0x20 build/main.o
+                0x0800001c                main
+ .text          0x0800003c       0x34 build/bb_delay.o
+                0x0800003c                Delay
+ .text          0x08000070       0x58 build/bb_sysclock.o
+                0x08000070                system_clock
+ .text          0x080000c8       0x60 build/bb_port.o
+                0x080000c8                port_clkcfg
+                0x080000e4                port_config
+                0x0800010c                toggle_pin
+ .text          0x08000128        0x0 build/stm32_startup.o
+ *(.text*)
+ .text.Reset_Handler
+                0x08000128       0x48 build/stm32_startup.o
+                0x08000128                Reset_Handler
+ .text.Default_Handler
+                0x08000170        0x2 build/stm32_startup.o
+                0x08000170                NMI_Handler
+                0x08000170                UsageFault_Handler
+                0x08000170                Default_Handler
+                0x08000170                MemManage_Handler
+                0x08000170                BusFault_Handler
+                0x08000170                HardFault_Handler
+ *(.rodata)
+                0x08000174                        . = ALIGN (0x4)
+ *fill*         0x08000172        0x2 
+                0x08000174                        _etext = .
+                0x08000174                        _sidata = LOADADDR (.data)
+
+.glue_7         0x08000174        0x0
+ .glue_7        0x08000174        0x0 linker stubs
+
+.glue_7t        0x08000174        0x0
+ .glue_7t       0x08000174        0x0 linker stubs
+
+.vfp11_veneer   0x08000174        0x0
+ .vfp11_veneer  0x08000174        0x0 linker stubs
+
+.v4_bx          0x08000174        0x0
+ .v4_bx         0x08000174        0x0 linker stubs
+
+.iplt           0x08000174        0x0
+ .iplt          0x08000174        0x0 build/main.o
+
+.rel.dyn        0x08000174        0x0
+ .rel.iplt      0x08000174        0x0 build/main.o
+
+.data           0x20000000        0x0 load address 0x08000174
+                0x20000000                        . = ALIGN (0x4)
+                0x20000000                        _sdata = .
+ *(.data)
+ .data          0x20000000        0x0 build/main.o
+ .data          0x20000000        0x0 build/bb_delay.o
+ .data          0x20000000        0x0 build/bb_sysclock.o
+ .data          0x20000000        0x0 build/bb_port.o
+ .data          0x20000000        0x0 build/stm32_startup.o
+                0x20000000                        . = ALIGN (0x4)
+                0x20000000                        _edata = .
+
+.igot.plt       0x20000000        0x0 load address 0x08000174
+ .igot.plt      0x20000000        0x0 build/main.o
+
+.bss            0x20000000        0x0 load address 0x08000174
+                0x20000000                        . = ALIGN (0x4)
+                0x20000000                        _sbss = .
+ *(.bss)
+ .bss           0x20000000        0x0 build/main.o
+ .bss           0x20000000        0x0 build/bb_delay.o
+ .bss           0x20000000        0x0 build/bb_sysclock.o
+ .bss           0x20000000        0x0 build/bb_port.o
+ .bss           0x20000000        0x0 build/stm32_startup.o
+                0x20000000                        . = ALIGN (0x4)
+                0x20000000                        _ebss = .
+                0x20000000                        __bss_end__ = _ebss
+OUTPUT(build/bb_blink.elf elf32-littlearm)
+LOAD linker stubs
+
+.comment        0x00000000       0x45
+ .comment       0x00000000       0x45 build/main.o
+                                 0x46 (size before relaxing)
+ .comment       0x00000045       0x46 build/bb_delay.o
+ .comment       0x00000045       0x46 build/bb_sysclock.o
+ .comment       0x00000045       0x46 build/bb_port.o
+
+.ARM.attributes
+                0x00000000       0x2c
+ .ARM.attributes
+                0x00000000       0x2e build/main.o
+ .ARM.attributes
+                0x0000002e       0x2e build/bb_delay.o
+ .ARM.attributes
+                0x0000005c       0x2e build/bb_sysclock.o
+ .ARM.attributes
+                0x0000008a       0x2e build/bb_port.o
+ .ARM.attributes
+                0x000000b8       0x21 build/stm32_startup.o

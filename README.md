@@ -1,5 +1,9 @@
 # STM32F407_Baremetal
-Bare metal drivers for stm32f407 microcontroller.
+Bare metal programming for stm32f407 microcontroller.
+- Linker file
+- Startup file
+- Makefile
+- Register level clock/IO Port configuration
 
 --Hardware Used --
 1. Board - STM32f407 Black Board

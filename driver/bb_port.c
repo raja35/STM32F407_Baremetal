@@ -3,8 +3,6 @@
 #include "bb_port.h"
 
 
-
-
 void port_clkcfg(void)
 {
 	/*turn on porta clock*/

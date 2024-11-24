@@ -1,0 +1,5 @@
+{
+    "cortex-debug.gdbPath": "C:/arm-none-eabi-gcc/bin/arm-none-eabi-gdb",
+    "cortex-debug.openocdPath": "C:/openocd/bin/openocd",
+    "cortex-debug.stm32cubeprogrammer": "C:/Program Files/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/STM32CubeProgrammer",
+}

@@ -3,7 +3,7 @@
 
 void system_clock(void)
 {
-	/*select HSI as system clock*/
+	/*Enable HSI Clock*/
 	RCC_CR |= (1<<0);
 	
 	/*wait for HSI to be ready*/
